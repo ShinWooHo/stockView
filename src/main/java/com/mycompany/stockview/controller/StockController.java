@@ -30,7 +30,7 @@ public class StockController {
 
         model.addAttribute("itemList", itemList);
 
-        return "stock/list";
+        return "stock/list_copy";
     }
 
     @GetMapping("/search")
