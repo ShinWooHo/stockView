@@ -114,12 +114,7 @@
         </table>
 
         <!-- 페이지네이션 -->
-        <div class="pagination">
-            <button class="page-btn" disabled>이전</button>
-            <c:forEach begin="1" end="10" var="page">
-                <button class="page-btn" <c:if test='${page == 1}'>active</c:if>">${page}</button>
-            </c:forEach>
-            <button class="page-btn">다음</button>
+        <div id="pagination" class="pagination">
         </div>
 
     </main>

@@ -111,6 +111,13 @@ footer {
     cursor: pointer;
 }
 
+.page-btn.disabled {
+    color: #aaa;
+    border-color: #ddd;
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+
 .filter-bar button:hover {
     background-color: #0056b3;
 }
