@@ -14,4 +14,8 @@ public interface StockRepository {
     List<Stock> findAll();
 
     List<StockItemListDto> findByConditions(@Param("market") String market, @Param("searchType") String searchType, @Param("industry") String industry, @Param("fisc_month") String fisc_month, @Param("company_name") String company_name, @Param("region") String region);
+
+    List<Stock> searchWithPaging(@Param("fisc_month") String fisc_month, @Param("offset") int offset, @Param("size") int size);
+
+    int countSearchResult(@Param("fisc_month") String fisc_month);
 }

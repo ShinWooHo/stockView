@@ -10,35 +10,22 @@
         FROM STOCK_ITEM
     </select>
 
-    <select id="findByConditions" resultType="com.mycompany.stockview.entity.Stock">
-        SELECT
-        COMP_NAME, INDUSTRY, MAIN_PROD, LIST_DATE, FISC_MONTH, CEO_NAME, WEBSITE, REGION
+    <select id="searchWithPaging" resultType="com.mycompany.stockview.entity.Stock">
+        SELECT COMP_NAME, INDUSTRY, MAIN_PROD, LIST_DATE, FISC_MONTH, CEO_NAME, WEBSITE, REGION
         FROM STOCK_ITEM
         <where>
-            <if test="market != null and market != ''">
-                AND MARKET = #{market}
-            </if>
-            <if test="searchType != null and searchType != '' and company_name != null and company_name != ''">
-                <choose>
-                    <when test="searchType == '상장법인'">
-                        AND COMP_NAME LIKE CONCAT('%', #{company_name}, '%')
-                    </when>
-                    <when test="searchType == '종목명'">
-                        AND MAIN_PROD LIKE CONCAT('%', #{company_name}, '%')
-                    </when>
-                    <when test="searchType == '대표자'">
-                        AND CEO_NAME LIKE CONCAT('%', #{company_name}, '%')
-                    </when>
-                </choose>
-            </if>
-            <if test="industry != null and industry != ''">
-                AND INDUSTRY = #{industry}
-            </if>
             <if test="fisc_month != null and fisc_month != ''">
-                AND FISC_MONTH = #{fisc_month}
+                fisc_month = #{fisc_month}
             </if>
-            <if test="region != null and region != ''">
-                AND REGION = #{region}
+        </where>
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+    
+    <select id="countSearchResult" resultType="int">
+        SELECT COUNT(*) FROM STOCK_ITEM
+        <where>
+            <if test="fisc_month != null and fisc_month != ''">
+                fisc_month = #{fisc_month}
             </if>
         </where>
     </select>
